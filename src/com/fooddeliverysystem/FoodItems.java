@@ -4,16 +4,13 @@ import java.util.Objects;
 interface  IVeg{ }
 interface  INonVeg{ }
 public abstract class FoodItems {
-
     enum Taste{SPICY, SWEET, SPICY_SALTY};
     enum Category{STARTER, MAIN_COURSE, DESSERT, BEVERAGE};
-//    enum Type{VEG, NON_VEG}
-//    Type type;
     Taste taste;
     float price;
     String name;
     Category category;
-    short preparationTime;
+    byte preparationTime;
 
     @Override
     public boolean equals(Object o) {
@@ -33,7 +30,6 @@ public abstract class FoodItems {
         return "FoodItems{" +
                 "name=" + name +
                 ", category=" + category +
-//                ", type=" + type +
                 ", taste=" + taste +
                 ", price=" + price +
                 ", preparationTime=" + preparationTime +

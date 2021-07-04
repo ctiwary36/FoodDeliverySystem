@@ -5,9 +5,7 @@ import java.util.*;
 public class FoodManager {
         Set<FoodItems> foodList = new HashSet<>();
 
-//         List <FoodItems> foodList = new ArrayList();
-
-         public void add(FoodItems foodItems){
+         public void add(FoodItems foodItems) {
              foodList.add(foodItems);
          }
 
@@ -26,16 +24,16 @@ public class FoodManager {
 
          }
 
-         void printFood(){
+         void printFood() {
              for (FoodItems elements: foodList) {
                  System.out.println(elements);
              }
          }
 
-         public void delete(FoodItems foodItems){
+         public void delete(FoodItems foodItems) {
              foodList.remove(foodItems);
          }
-        public int getFoodCount(){
+        public int getFoodCount() {
             return foodList.size();
         }
         public void printAllVegItem() {

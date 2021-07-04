@@ -8,59 +8,53 @@ public class Main {
     public static void main(String[] args) {
         GobiManchuriyan gobiManchuriyan = new GobiManchuriyan();
         gobiManchuriyan.price = 200;
-        gobiManchuriyan.printMainIngredients();
 
         PaneerMasala paneerMasala = new PaneerMasala();
         paneerMasala.price = 150;
-        paneerMasala.printMainIngredients();
 
         Biryani biryani = new Biryani();
         biryani.price = 250;
-        biryani.printMainIngredients();
 
         Sweets sweets = new Sweets();
         sweets.price = 50;
-        sweets.printMainIngredients();
 
         LemonJuice lemonJuice = new LemonJuice();
         lemonJuice.price = 80;
-        lemonJuice.printMainIngredients();
 
         Main mainObj = new Main();
 
-//        FoodManager foodManager = new FoodManager();
         mainObj.foodManager.add(biryani);
         mainObj.foodManager.add(gobiManchuriyan);
         mainObj.foodManager.add(lemonJuice);
         mainObj.foodManager.add(sweets);
         mainObj.foodManager.add(paneerMasala);
 
-//        mainObj.foodManager.printFood();
-//        System.out.println("the total food item in food list is : " + mainObj.foodManager.getFoodCount());
-//
-//        mainObj.foodManager.printFood();
-//        mainObj.foodManager.printAllNonVegItem();
-//        mainObj.foodManager.printAllVegItem();
-
         mainObj.showMenu();
-        mainObj.updateFoodItem();
-
     }
 
    private void showMenu() {
-        System.out.println("Enter 1 to update Food Item");
-        Scanner sc = new Scanner(System.in);
-        int choice = sc.nextInt();
-        switch (choice) {
-            case 1:
-                updateFoodItem();
-                break;
-            default:
-                System.out.println("invalid choice");
-        }
-    }
-
-
+       Scanner sc = new Scanner(System.in);
+       int choice = 0;
+       while (choice != 3) {
+           System.out.println("Enter 1 to update Food Item");
+           System.out.println("Enter 2 to view menu");
+           System.out.println("Enter 3 to exit");
+           choice = sc.nextInt();
+           switch (choice) {
+               case 1:
+                   updateFoodItem();
+                   break;
+               case 2:
+                   foodManager.printFood();
+                   break;
+               case 3:
+                   System.out.println("you exit the menu");
+                   break;
+               default:
+                   System.out.println("invalid choice");
+           }
+       }
+   }
     private void updateFoodItem() {
         System.out.println("Enter food item to update");
         Scanner sc = new Scanner(System.in);
@@ -69,26 +63,39 @@ public class Main {
         FoodItems foodItems = foodManager.getFoodItem(input);
         System.out.println(foodItems);
 
-        System.out.println("enter 1 for change taste");
-        System.out.println("enter 2 for change category");
-        System.out.println("enter 3 for change preparation Time");
-        System.out.println("enter 4 for change name");
-        double parameter = sc.nextDouble();
+        int parameter = 0;
+        while ( parameter != 5) {
+            System.out.println("enter 1 for change taste");
+            System.out.println("enter 2 for change category");
+            System.out.println("enter 3 for change preparation Time");
+            System.out.println("enter 4 for change name");
+            System.out.println("enter 5 to return to main menu");
+            parameter = sc.nextInt();
 
-        switch ((int) parameter){
-            case 1:
-                updateTaste(foodItems);
-                break;
-            case 2:
-                updateCategory(foodItems);
-                break;
-            default:
-                System.out.println("Invalid choice");
+            switch ( parameter ) {
+                case 1:
+                    updateTaste(foodItems);
+                    break;
+                case 2:
+                    updateCategory(foodItems);
+                    break;
+                case 3:
+                    updatePreprationTime(foodItems);
+                    break;
+                case 4:
+                    updateName(foodItems);
+                    break;
+                case 5:
+                    System.out.println("you have been return to main menu");
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
+            System.out.println(foodItems);
         }
-        System.out.println(foodItems);
     }
-    private void updateTaste(FoodItems foodItems){
 
+    private void updateTaste(FoodItems foodItems) {
         System.out.println("for change Taste");
         System.out.println("press 1 for Spicy");
         System.out.println("press 2 for Sweet");
@@ -110,8 +117,8 @@ public class Main {
                 System.out.println("invalid choice");
         }
     }
-    private void updateCategory(FoodItems foodItems){
 
+    private void updateCategory(FoodItems foodItems){
         System.out.println("for change Category");
         System.out.println("press 1 for STARTER");
         System.out.println("press 2 for MAIN_COURSES");
@@ -122,20 +129,34 @@ public class Main {
 
         switch (taste){
             case 1:
-                foodItems.category= FoodItems.Category.STARTER;
+                foodItems.category = FoodItems.Category.STARTER;
                 break;
             case 2:
-                foodItems.category= FoodItems.Category.MAIN_COURSE;
+                foodItems.category = FoodItems.Category.MAIN_COURSE;
                 break;
             case 3:
-                foodItems.category= FoodItems.Category.DESSERT;
+                foodItems.category = FoodItems.Category.DESSERT;
                 break;
             case 4:
-                foodItems.category= FoodItems.Category.BEVERAGE;
+                foodItems.category = FoodItems.Category.BEVERAGE;
                 break;
             default:
                 System.out.println("invalid choice");
         }
+    }
+
+    public void updatePreprationTime(FoodItems foodItems) {
+        System.out.println("please Enter the new Preparation Time");
+        Scanner sc = new Scanner(System.in);
+        byte Ptime =  sc.nextByte();
+        foodItems.preparationTime = Ptime;
+    }
+
+    public void  updateName(FoodItems foodItems) {
+        System.out.println("please Enter the new name");
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+        foodItems.name = name;
     }
 }
 
