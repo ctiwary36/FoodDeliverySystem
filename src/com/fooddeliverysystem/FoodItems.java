@@ -3,7 +3,7 @@ import java.util.Objects;
 
 interface  IVeg{ }
 interface  INonVeg{ }
-public abstract class FoodItems {
+public class FoodItems {
     enum Taste{SPICY, SWEET, SPICY_SALTY};
     enum Category{STARTER, MAIN_COURSE, DESSERT, BEVERAGE};
     Taste taste;
@@ -35,5 +35,5 @@ public abstract class FoodItems {
                 ", preparationTime=" + preparationTime +
                 '}';
     }
-    public abstract void printMainIngredients();
+//    public abstract void printMainIngredients();
 }
